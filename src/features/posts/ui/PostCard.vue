@@ -12,9 +12,9 @@ defineProps({
 <template>
   <div class="post-card" v-if="post">
     <div class="post-card__container">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.body }}</p>
-      <p v-if="user">
+      <h2 class="post-card__title">{{ post.title }}</h2>
+      <p class="post-card__body">{{ post.body }}</p>
+      <p class="post-card__user-name" v-if="user">
         {{ user.name }}
       </p>
     </div>
@@ -31,6 +31,17 @@ defineProps({
     justify-content: space-between;
     gap: 12px;
     height: 100%;
+  }
+
+  &__title {
+    @apply text-blue;
+  }
+
+  &__body {
+  }
+
+  &__user-name {
+    @apply text-gray-400;
   }
 }
 </style>

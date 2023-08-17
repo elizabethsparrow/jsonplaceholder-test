@@ -31,14 +31,19 @@ onLoadComponent()
 
 <template>
   <div class="posts-component">
-    <input type="text" v-model="searchInputValue" />
-    <!-- {{ asd }} -->
+    <input
+      type="text"
+      v-model="searchInputValue"
+      class="posts-component__search-input"
+      placeholder="Поиск"
+    />
     <div class="posts-component__container">
       <post-card
         v-for="post in searchedPosts"
         :post="post"
         :user="findUserById(users, post.userId)"
       />
+      <p v-if="searchedPosts.length <= 0">Результаты не найдены</p>
     </div>
   </div>
 </template>
@@ -49,6 +54,17 @@ onLoadComponent()
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 425px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__search-input {
+    @apply mb-2;
   }
 }
 </style>

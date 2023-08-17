@@ -4,7 +4,7 @@ import { PostsComponent } from './widgets/posts'
 
 <template>
   <div class="app__container">
-    <posts-component />
+    <posts-component class="app__posts" />
   </div>
 </template>
 
@@ -13,12 +13,21 @@ import { PostsComponent } from './widgets/posts'
   width: 100%;
   height: fit-content;
   min-height: 100%;
-  background: $blue;
+  @apply bg-slate-100;
 }
 .app__container {
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app__posts {
   width: 80%;
   height: 100%;
   padding: 24px 0;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 }
 </style>

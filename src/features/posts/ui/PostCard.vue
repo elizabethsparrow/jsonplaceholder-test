@@ -35,9 +35,11 @@ defineProps({
 
   &__title {
     @apply text-blue;
+    line-height: 1.5;
   }
 
   &__body {
+    line-height: 1.5;
   }
 
   &__user-name {

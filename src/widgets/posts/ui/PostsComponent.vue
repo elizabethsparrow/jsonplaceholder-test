@@ -41,7 +41,7 @@ onLoadComponent()
       <post-card
         v-for="post in searchedPosts"
         :post="post"
-        :user="findUserById(users, post.userId)"
+        :user-name="findUserById(users, post.userId)?.name"
       />
       <p v-if="searchedPosts.length <= 0">Результаты не найдены</p>
     </div>

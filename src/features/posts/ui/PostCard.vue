@@ -3,8 +3,8 @@ defineProps({
   post: {
     type: Object
   },
-  user: {
-    type: Object
+  userName: {
+    type: String
   }
 })
 </script>
@@ -14,8 +14,8 @@ defineProps({
     <div class="post-card__container">
       <h2 class="post-card__title">{{ post.title }}</h2>
       <p class="post-card__body">{{ post.body }}</p>
-      <p class="post-card__user-name" v-if="user">
-        {{ user.name }}
+      <p class="post-card__user-name" v-if="userName">
+        {{ userName }}
       </p>
     </div>
   </div>

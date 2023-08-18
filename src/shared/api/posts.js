@@ -1,9 +1,5 @@
 import instance from './instance'
 
-const getAllPosts = async () => {
-  const result = await instance.get('/posts')
-  console.log(result)
-  return result
-}
+const getAllPosts = async () => await instance.get('/posts')
 
 export { getAllPosts }

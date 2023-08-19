@@ -1,4 +1,4 @@
-import instance from './instance'
+import { instance } from '@/shared/api'
 
 const getAllPosts = async () => await instance.get('/posts')
 

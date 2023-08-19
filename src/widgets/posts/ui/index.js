@@ -1,3 +1,3 @@
-import PostsComponent from './PostsComponent.vue'
+import PostsComponent from './index.vue'
 
 export { PostsComponent }

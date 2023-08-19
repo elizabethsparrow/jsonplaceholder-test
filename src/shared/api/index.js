@@ -1,4 +1,3 @@
-import { getAllPosts } from './posts'
-import { getUsers } from './users'
+import instance from './instance'
 
-export { getAllPosts, getUsers }
+export { instance }

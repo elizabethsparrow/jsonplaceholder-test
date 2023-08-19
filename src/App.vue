@@ -1,10 +1,10 @@
 <script setup>
-import { PostsComponent } from './widgets/posts'
+import { PostsList } from './widgets/posts-list'
 </script>
 
 <template>
   <div class="app__container">
-    <posts-component class="app__posts" />
+    <posts-list class="app__posts" />
   </div>
 </template>
 

@@ -13,9 +13,8 @@ const posts = ref([]),
 const onLoadComponent = async () => {
   const users = await getUsers().then((response) => response.data)
   posts.value = await getAllPosts().then((response) => response.data)
-  posts.value?.forEach((post) => {
+  posts.value.forEach((post) => {
     let user = users.find((el) => el.id === post.userId)
-
     if (user) {
       post.user = user
     }
@@ -35,7 +34,7 @@ onLoadComponent()
       placeholder="Поиск"
     />
     <div class="posts-component__container">
-      <post-card v-for="post in searchedPosts" :post="post" />
+      <post-card v-for="post in searchedPosts" :post="post" :key="post.id" />
       <p v-if="searchedPosts.length <= 0">Результаты не найдены</p>
     </div>
   </div>

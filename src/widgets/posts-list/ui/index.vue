@@ -1,29 +1,26 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { PostCard, findPostsByUserId, getAllPosts } from '../../../entities/post'
-import { getUsers, findUsersByName, findUserById } from '../../../entities/user'
+import { PostCard, findPostByUserName, getAllPosts } from '../../../entities/post'
+import { getUsers } from '../../../entities/user'
 import './styles.model.scss'
 
 const posts = ref([]),
-  users = ref([]),
   searchInputValue = ref(null),
   searchedPosts = computed(() =>
-    searchInputValue.value
-      ? findPostsByUserId(
-          posts.value,
-          searchedUsers.value?.map((el) => el.id)
-        )
-      : posts.value
-  ),
-  searchedUsers = computed(() => findUsersByName(users.value, searchInputValue.value))
+    searchInputValue.value ? findPostByUserName(posts.value, searchInputValue.value) : posts.value
+  )
 
 const onLoadComponent = async () => {
-  try {
-    posts.value = await getAllPosts().then((response) => response.data)
-    users.value = await getUsers().then((response) => response.data)
-  } catch (error) {
-    throw error
-  }
+  const users = await getUsers().then((response) => response.data)
+  posts.value = await getAllPosts().then((response) => response.data)
+  posts.value?.forEach((post) => {
+    let user = users.find((el) => el.id === post.userId)
+
+    if (user) {
+      post.user = user
+    }
+  })
+  console.log(posts.value)
 }
 
 onLoadComponent()
@@ -38,11 +35,7 @@ onLoadComponent()
       placeholder="Поиск"
     />
     <div class="posts-component__container">
-      <post-card
-        v-for="post in searchedPosts"
-        :post="post"
-        :user-name="findUserById(users, post.userId)?.name"
-      />
+      <post-card v-for="post in searchedPosts" :post="post" />
       <p v-if="searchedPosts.length <= 0">Результаты не найдены</p>
     </div>
   </div>
